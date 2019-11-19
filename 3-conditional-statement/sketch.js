@@ -101,6 +101,17 @@ class Ball {
   	bounceBall(){
     		if (this.x >= me.x-100 && this.x <= me.x+100 && this.y > me.y-100 && this.y < me.y+100){
       			this.speed = -this.speed;
+
+    function draw() {
+        background(220);
+        rect(50, 50, 40, 60);
+        rect(45, 50, 50, 10);
+        arc(60, 30, 10, 10, 5, 90, 180);
+        line(55, 60, 55, 110);
+        line(60, 60, 60, 110);
+        line(65, 60, 65, 110);
+        line(70, 60, 70, 110);
+        line(75, 60, 75, 110);
     		}
   	}
 
