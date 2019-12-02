@@ -3,14 +3,15 @@ let balls = [];
 
 //create a variable to hold your avatar
 let me;
+let ball;
 
 
 function setup() {
   createCanvas(500, 400);
 
   //make one avatar called me
-  me = new Avatar(width/2, 300, 3);
-
+  me = new Avatar(width/10, 300, 3);
+  ball = new Ball (me.x+20, me.y+30,2,false);
 }
 
 function draw(){
@@ -19,18 +20,14 @@ function draw(){
   me.drawMe();
   me.moveMe();
 
-  if (frameCount % 25 == 0) {
-      let  b = new Ball(width, random(0,height), -random(2,5));
-      balls.push(b);
-      console.log(balls); //print the balls array to the console
-    }
+  ball.drawBall();
+  ball.moveBall();
+}
 
-//	draw all the balls in that array
-	for (let i = 0; i < balls.length; i++) {
-	 	      balls[i].drawBall();
-       	  balls[i].moveBall();
-        	balls[i].bounceBall();
-	  }
+function keyPressed(){
+  if (keyCode===RIGHT_ARROW){
+    ball.thrown = true;
+  }
 
 }
 
@@ -54,7 +51,7 @@ class Avatar {
         line(this.x+10, this.y+50, this.x+5, this.y+60);
         line(this.x, this.y+15, this.x-10, this.y+25);
         line(this.x-10, this.y+25, this.x+10, this.y+35);
-	}
+}
 
 	moveMe(){
     if (keyIsDown(UP_ARROW)) { //if you hold the up arrow, move up by speed
@@ -77,31 +74,32 @@ class Avatar {
 class Ball {
 
 	//every ball needs an x value, a y value, and a speed
-	constructor(x,y, speed){
+	constructor(x,y, speed,thrown){
 		this.x = x;
     this.y = y;
     this.speed = speed;
+    this.thrown = thrown;
 	}
 
 	// draw a ball on the screen at x,y
 	drawBall(){
-    	stroke(0);
+    fill("white")
+      stroke(0);
       strokeWeight(1);
     	 var RGBColor = (Math.round, Math.random, 255)
-		  rect(this.x,this.y,25,25);
+		  ellipse(this.x,this.y,25,25);
 	}
 
 	//update the location of the ball, so it moves across the screen
 	moveBall(){
-		this.x = this.x+ this.speed;
-		this.y = this.y+.5;
-	}
-
-	//if the ball hits the person, change the speed value to negative (send it in the opposite direction)
-  	bounceBall(){
-    		if (this.x >= me.x-100 && this.x <= me.x+100 && this.y > me.y-100 && this.y < me.y+100){
-      			this.speed = -this.speed;
-    		}
-  	}
-
-}
+    if(this.thrown == true){
+      this.x = this.x+ this.speed;
+      if (this.x<=me.x+200) {
+        this.y=this.y-2}
+        else{
+          this.y=this.y+5}
+        }
+      }
+    //  this.y = this.y -(1/200*(this.x-20)^2 +25);
+      // this.y+.5;
+    }
