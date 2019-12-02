@@ -1,24 +1,35 @@
 //create an empty array called balls
-let balls = [];
+//let balls = [];
 
 //create a variable to hold your avatar
 let me;
 let ball;
-
+let can; 
 
 function setup() {
   createCanvas(500, 400);
 
+
   //make one avatar called me
-  me = new Avatar(width/10, 300, 3);
+
+  me = new Avatar(width/2, 300, 3);
+  can = new trashcan(450, 300);
+
+
+ 
   ball = new Ball (me.x+20, me.y+30,2,false);
+
 }
 
-function draw(){
-	background(220);
+ function draw(){
+ 	background(220);
+  // trashcan(450, 300);
 
-  me.drawMe();
-  me.moveMe();
+   me.drawMe();
+   me.moveMe();
+   can.drawtrashcan();
+
+ }
 
   ball.drawBall();
   ball.moveBall();
@@ -29,6 +40,28 @@ function keyPressed(){
     ball.thrown = true;
   }
 
+
+class trashcan {
+  constructor(x, y){ //every avatar needs an x value, a y value, and a speed
+		    this.x = x;
+    		this.y = y;
+   }
+
+drawtrashcan(){
+//x=150 y=150
+  rect(this.x, this.y, 40, 60);
+  rect(this.x-5, this.y, 50, 10);
+  fill("red")
+  line(this.x+5, this.y+60, this.x+5, this.y+10);
+  fill("black")
+  line(this.x+10, this.y+60, this.x+10, this.y+10);
+  line(this.x+15, this.y+60, this.x+15, this.y+10);
+  line(this.x+20, this.y+60, this.x+20, this.y+10);
+  line(this.x+25, this.y+60, this.x+25, this.y+10);
+  line(this.x+30, this.y+60, this.x+30, this.y+10);
+  line(this.x+35, this.y+60, this.x+35, this.y+10);
+
+   }
 }
 
 //avatar class
@@ -70,6 +103,7 @@ class Avatar {
 }
 
 
+
 //ball class from which to create new balls with similar properties.
 class Ball {
 
@@ -103,3 +137,4 @@ class Ball {
     //  this.y = this.y -(1/200*(this.x-20)^2 +25);
       // this.y+.5;
     }
+
