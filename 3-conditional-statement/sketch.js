@@ -3,14 +3,21 @@
 
 //create a variable to hold your avatar
 let me;
+let ball;
+let can; 
 
 function setup() {
   createCanvas(500, 400);
 
 
   //make one avatar called me
+
   me = new Avatar(width/2, 300, 3);
   can = new trashcan(450, 300);
+
+
+ 
+  ball = new Ball (me.x+20, me.y+30,2,false);
 
 }
 
@@ -23,6 +30,16 @@ function setup() {
    can.drawtrashcan();
 
  }
+
+  ball.drawBall();
+  ball.moveBall();
+}
+
+function keyPressed(){
+  if (keyCode===RIGHT_ARROW){
+    ball.thrown = true;
+  }
+
 
 class trashcan {
   constructor(x, y){ //every avatar needs an x value, a y value, and a speed
@@ -67,7 +84,7 @@ class Avatar {
         line(this.x+10, this.y+50, this.x+5, this.y+60);
         line(this.x, this.y+15, this.x-10, this.y+25);
         line(this.x-10, this.y+25, this.x+10, this.y+35);
-	}
+}
 
 	moveMe(){
     if (keyIsDown(UP_ARROW)) { //if you hold the up arrow, move up by speed
@@ -84,3 +101,40 @@ class Avatar {
   }
 
 }
+
+
+
+//ball class from which to create new balls with similar properties.
+class Ball {
+
+	//every ball needs an x value, a y value, and a speed
+	constructor(x,y, speed,thrown){
+		this.x = x;
+    this.y = y;
+    this.speed = speed;
+    this.thrown = thrown;
+	}
+
+	// draw a ball on the screen at x,y
+	drawBall(){
+    fill("white")
+      stroke(0);
+      strokeWeight(1);
+    	 var RGBColor = (Math.round, Math.random, 255)
+		  ellipse(this.x,this.y,25,25);
+	}
+
+	//update the location of the ball, so it moves across the screen
+	moveBall(){
+    if(this.thrown == true){
+      this.x = this.x+ this.speed;
+      if (this.x<=me.x+200) {
+        this.y=this.y-2}
+        else{
+          this.y=this.y+5}
+        }
+      }
+    //  this.y = this.y -(1/200*(this.x-20)^2 +25);
+      // this.y+.5;
+    }
+
