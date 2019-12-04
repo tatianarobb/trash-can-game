@@ -4,7 +4,7 @@
 //create a variable to hold your avatar
 let me;
 let ball;
-let can; 
+let can;
 
 function setup() {
   createCanvas(500, 400);
@@ -16,7 +16,7 @@ function setup() {
   can = new trashcan(450, 300);
 
 
- 
+
   ball = new Ball (me.x+20, me.y+30,2,false);
 
 }
@@ -28,19 +28,19 @@ function setup() {
    me.drawMe();
    me.moveMe();
    can.drawtrashcan();
-
+   ball.drawBall();
+   ball.moveBall();
  }
 
-  ball.drawBall();
-  ball.moveBall();
-}
+
+
 
 function keyPressed(){
   if (keyCode===RIGHT_ARROW){
     ball.thrown = true;
   }
 
-
+}
 class trashcan {
   constructor(x, y){ //every avatar needs an x value, a y value, and a speed
 		    this.x = x;
@@ -120,7 +120,7 @@ class Ball {
     fill("white")
       stroke(0);
       strokeWeight(1);
-    	 var RGBColor = (Math.round, Math.random, 255)
+    	 var RGBColor = (Math.round, Math.random, 255);
 		  ellipse(this.x,this.y,25,25);
 	}
 
@@ -136,5 +136,4 @@ class Ball {
       }
     //  this.y = this.y -(1/200*(this.x-20)^2 +25);
       // this.y+.5;
-    }
-
+}
