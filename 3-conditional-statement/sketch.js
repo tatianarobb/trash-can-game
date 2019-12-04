@@ -4,7 +4,7 @@
 //create a variable to hold your avatar
 let me;
 let ball;
-let can; 
+let can;
 
 function setup() {
   createCanvas(500, 400);
@@ -12,11 +12,11 @@ function setup() {
 
   //make one avatar called me
 
-  me = new Avatar(width/2, 300, 3);
+  me = new Avatar(width/8, 300, 3);
   can = new trashcan(450, 300);
 
 
- 
+
   ball = new Ball (me.x+20, me.y+30,2,false);
 
 }
@@ -28,18 +28,20 @@ function setup() {
    me.drawMe();
    me.moveMe();
    can.drawtrashcan();
+   ball.drawBall();
+   ball.moveBall();
+
 
  }
 
-  ball.drawBall();
-  ball.moveBall();
-}
+
+
 
 function keyPressed(){
-  if (keyCode===RIGHT_ARROW){
+  if (keyCode===ENTER){
     ball.thrown = true;
   }
-
+}
 
 class trashcan {
   constructor(x, y){ //every avatar needs an x value, a y value, and a speed
@@ -92,17 +94,17 @@ class Avatar {
     }
 
     if (keyIsDown(DOWN_ARROW)) { // if you hold the down arrow, move down by speed
-        this.y += this.speed;
-    }
+    this.y += this.speed;
+}
+if (keyIsDown(LEFT_ARROW)){
+  this.x += this.speed;
 	}
-
-  die(){
-
+if(keyIsDown(RIGHT_ARROW)){
+this.x -= this.speed;
   }
 
 }
-
-
+}
 
 //ball class from which to create new balls with similar properties.
 class Ball {
@@ -137,4 +139,3 @@ class Ball {
     //  this.y = this.y -(1/200*(this.x-20)^2 +25);
       // this.y+.5;
     }
-
