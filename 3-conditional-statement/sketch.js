@@ -12,7 +12,7 @@ function setup() {
 
   //make one avatar called me
 
-  me = new Avatar(width/2, 300, 3);
+  me = new Avatar(width/8, 300, 3);
   can = new trashcan(450, 300);
 
 
@@ -36,7 +36,7 @@ function setup() {
 
 
 function keyPressed(){
-  if (keyCode===RIGHT_ARROW){
+  if (keyCode===ENTER){
     ball.thrown = true;
   }
 
@@ -92,17 +92,17 @@ class Avatar {
     }
 
     if (keyIsDown(DOWN_ARROW)) { // if you hold the down arrow, move down by speed
-        this.y += this.speed;
-    }
+    this.y += this.speed;
+}
+if (keyIsDown(LEFT_ARROW)){
+  this.x += this.speed;
 	}
-
-  die(){
-
+if(keyIsDown(RIGHT_ARROW)){
+this.x -= this.speed;
   }
 
 }
-
-
+}
 
 //ball class from which to create new balls with similar properties.
 class Ball {
