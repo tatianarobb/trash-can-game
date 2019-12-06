@@ -16,7 +16,6 @@ function setup() {
   can = new trashcan(450, 300);
 
 
-
   ball = new Ball (me.x+20, me.y+30,2,false);
 
 }
@@ -30,6 +29,7 @@ function setup() {
    can.drawtrashcan();
    ball.drawBall();
    ball.moveBall();
+   ball.hitCan();
  }
 
 
@@ -134,6 +134,14 @@ class Ball {
           this.y=this.y+5}
         }
       }
+
+      hitCan(){
+        if (this.x>=can.x-5 && this.x<=can.x+55){
+            print ("you got a point")
+        }
+
+    }
     //  this.y = this.y -(1/200*(this.x-20)^2 +25);
       // this.y+.5;
+
 }
