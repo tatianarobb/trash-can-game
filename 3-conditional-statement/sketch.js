@@ -95,10 +95,10 @@ class Avatar {
     this.y += this.speed;
 }
 if (keyIsDown(LEFT_ARROW)){
-  this.x += this.speed;
+  this.x -= this.speed;
 	}
 if(keyIsDown(RIGHT_ARROW)){
-this.x -= this.speed;
+this.x += this.speed;
   }
 
 }
